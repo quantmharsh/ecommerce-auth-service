@@ -45,7 +45,13 @@ public class UserServiceImpl implements UserService {
 
             // save into db
             userRepository.save(user);
-            return user;
+            return   new UserResponse(
+                 user.getUsername(),
+                    user.getId(),
+                    user.getEmail(),
+            user.getRole()
+               
+            );
 
         } catch (Exception e) {
             throw new Error("Something Went Wrong . Please Try Again Later" + e);

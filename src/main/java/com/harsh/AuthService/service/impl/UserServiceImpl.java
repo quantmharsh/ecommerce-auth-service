@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.harsh.AuthService.dto.UserResponse;
 import com.harsh.AuthService.model.Role;
 import com.harsh.AuthService.model.User;
 import com.harsh.AuthService.repository.UserRepository;
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public User register(String username, String email, String rawPassword, Role role) {
+    public UserResponse register(String username, String email, String rawPassword, Role role) {
         try {
             if (username.isEmpty() || email.isEmpty() || rawPassword.isEmpty()) {
                 throw new IllegalArgumentException("All fields required");

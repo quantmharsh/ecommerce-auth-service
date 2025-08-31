@@ -1,6 +1,8 @@
 package com.harsh.AuthService.dto;
 
-import javax.management.relation.Role;
+
+
+import com.harsh.AuthService.model.Role;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

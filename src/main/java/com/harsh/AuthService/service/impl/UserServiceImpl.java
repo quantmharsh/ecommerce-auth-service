@@ -3,6 +3,7 @@ package com.harsh.AuthService.service.impl;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -53,8 +54,9 @@ public class UserServiceImpl implements UserService {
                
             );
 
-        } catch (Exception e) {
-            throw new Error("Something Went Wrong . Please Try Again Later" + e);
+        }catch (DataIntegrityViolationException e) {
+            // In case of race conditions, DB unique constraint can still trip
+            throw new IllegalArgumentException("Username or email already exists");
         }
 
     }

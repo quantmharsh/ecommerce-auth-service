@@ -8,6 +8,7 @@ import lombok.Data;
 
 /**
  * Standard error payload for clients.
+ * Strucure of error 
  */
 @Data
 @AllArgsConstructor

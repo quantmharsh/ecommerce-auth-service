@@ -32,7 +32,7 @@ UserResponse created=userService.register(request.getUsername(), request.getEmai
                 .body(created);
 
     }
-
+// Check Health of Auth Service
       @GetMapping("/health")
     public String health() { return "Auth Service is up 🚀"; }
 

@@ -51,5 +51,18 @@ public class GlobalExceptionHandler {
 
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiError);
     }
+    //Handlde Custom invalid data exception
+    @ExceptionHandler(InvalidDataException.class)
+    public ResponseEntity<ApiError> handleInvalidData(InvalidDataException ex)
+    {
+        ApiError  apiError = new ApiError( Instant.now(),
+                HttpStatus.NOT_FOUND.value(),
+                "Invalid Data",
+                ex.getMessage(),
+                null);
+
+            return ResponseEntity.badRequest().body(apiError);
+    }
+
 
 }

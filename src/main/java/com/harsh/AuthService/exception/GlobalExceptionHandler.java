@@ -52,6 +52,7 @@ public class GlobalExceptionHandler {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiError);
     }
     //Handlde Custom invalid data exception
+
     @ExceptionHandler(InvalidDataException.class)
     public ResponseEntity<ApiError> handleInvalidData(InvalidDataException ex)
     {
@@ -64,5 +65,17 @@ public class GlobalExceptionHandler {
             return ResponseEntity.badRequest().body(apiError);
     }
 
+    //Invalid Role Exception
+      @ExceptionHandler(InvalidRoleException.class)
+    public ResponseEntity<ApiError> handleInvalidData(InvalidRoleException ex)
+    {
+        ApiError  apiError = new ApiError( Instant.now(),
+                HttpStatus.NOT_FOUND.value(),
+                "Invalid Role ",
+                ex.getMessage(),
+                null);
+
+            return ResponseEntity.badRequest().body(apiError);
+    }
 
 }

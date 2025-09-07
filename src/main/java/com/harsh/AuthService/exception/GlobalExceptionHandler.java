@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -85,6 +86,18 @@ public class GlobalExceptionHandler {
         ApiError  apiError = new ApiError( Instant.now(),
                 HttpStatus.NOT_FOUND.value(),
                 "User Already Exist ",
+                ex.getMessage(),
+                null);
+
+            return ResponseEntity.badRequest().body(apiError);
+    }
+
+     // 3 Invalid JSON or request body not readable
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<ApiError> handleUnreadableRequest(HttpMessageNotReadableException ex) {
+         ApiError  apiError = new ApiError( Instant.now(),
+                HttpStatus.NOT_FOUND.value(),
+                "Malformed JSON Request\", \"Request body is invalid or missing\" ",
                 ex.getMessage(),
                 null);
 

@@ -78,4 +78,17 @@ public class GlobalExceptionHandler {
             return ResponseEntity.badRequest().body(apiError);
     }
 
+    //User Already Exist  Exception
+      @ExceptionHandler(UserAlreadyExistException.class)
+    public ResponseEntity<ApiError> handleUserAlreadyExist(UserAlreadyExistException ex)
+    {
+        ApiError  apiError = new ApiError( Instant.now(),
+                HttpStatus.NOT_FOUND.value(),
+                "User Already Exist ",
+                ex.getMessage(),
+                null);
+
+            return ResponseEntity.badRequest().body(apiError);
+    }
+
 }

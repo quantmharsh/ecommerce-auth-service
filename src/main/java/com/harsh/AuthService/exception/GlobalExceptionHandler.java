@@ -103,5 +103,17 @@ public class GlobalExceptionHandler {
 
             return ResponseEntity.badRequest().body(apiError);
     }
+    // 🔹 Catch-all handler (for unexpected exceptions)
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ApiError> handleGenericException(Exception ex) {
+        ApiError apiError = new ApiError(
+                Instant.now(),
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                "Internal Server Error",
+                ex.getMessage(),
+                null
+        );
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(apiError);
+    }
 
 }

@@ -58,7 +58,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiError> handleInvalidData(InvalidDataException ex)
     {
         ApiError  apiError = new ApiError( Instant.now(),
-                HttpStatus.NOT_FOUND.value(),
+                HttpStatus.BAD_REQUEST.value(),
                 "Invalid Data",
                 ex.getMessage(),
                 null);
@@ -68,10 +68,10 @@ public class GlobalExceptionHandler {
 
     //Invalid Role Exception
       @ExceptionHandler(InvalidRoleException.class)
-    public ResponseEntity<ApiError> handleInvalidData(InvalidRoleException ex)
+    public ResponseEntity<ApiError> handleInvalidRole(InvalidRoleException ex)
     {
         ApiError  apiError = new ApiError( Instant.now(),
-                HttpStatus.NOT_FOUND.value(),
+                HttpStatus.BAD_REQUEST.value(),
                 "Invalid Role ",
                 ex.getMessage(),
                 null);
@@ -84,7 +84,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiError> handleUserAlreadyExist(UserAlreadyExistException ex)
     {
         ApiError  apiError = new ApiError( Instant.now(),
-                HttpStatus.NOT_FOUND.value(),
+                HttpStatus.BAD_REQUEST.value(),
                 "User Already Exist ",
                 ex.getMessage(),
                 null);

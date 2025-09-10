@@ -85,12 +85,12 @@ public class GlobalExceptionHandler {
     {
         ApiError  apiError = new ApiError( Instant.now(),
                 HttpStatus.BAD_REQUEST.value(),
-                "User Already Exist ",
+                "User Already Exist.Try with different username ",
                 ex.getMessage(),
                 null);
 
             return ResponseEntity.badRequest().body(apiError);
-    }
+    } 
 
      // 3 Invalid JSON or request body not readable
     @ExceptionHandler(HttpMessageNotReadableException.class)
@@ -109,7 +109,7 @@ public class GlobalExceptionHandler {
         ApiError apiError = new ApiError(
                 Instant.now(),
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                "Internal Server Error",
+                "Internal Server Error Please Try Again later.",
                 ex.getMessage(),
                 null
         );

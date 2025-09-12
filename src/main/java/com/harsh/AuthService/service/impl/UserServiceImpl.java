@@ -31,10 +31,10 @@ public class UserServiceImpl implements UserService {
             if (username.isEmpty() || email.isEmpty() || rawPassword.isEmpty()) {
                 throw new IllegalArgumentException("All fields required");
             }
-            if (userRepository.existByEmail(email)) {
+            if (userRepository.existsByEmail(email)) {
                 throw new IllegalArgumentException("Email Already exists. Try to  login ");
             }
-            if (userRepository.existsByUserName(username)) {
+            if (userRepository.existsByUsername(username)) {
                 throw new IllegalArgumentException("Username  Already exists");
             }
 

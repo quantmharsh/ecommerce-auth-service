@@ -18,17 +18,17 @@ import lombok.Data;
 // Only this register request type of data  will be sent to service layer
 //Basically it provides Type Safety.
 //its DTo
- @Data
+@Data
 public class RegisterRequest {
 
-     @NotBlank(message = "Username is required")
-      @Size(min = 3, max = 64, message = "Username must be 3-64 characters")
-     private  String username;
-     @Email(message = "Email Should be valid")
-     @NotBlank(message = "Email is required")
-      @Size(max = 254, message = "Email too long")
+    @NotBlank(message = "Username is required")
+    @Size(min = 3, max = 64, message = "Username must be 3-64 characters")
+    private  String username;
+    @Email(message = "Email Should be valid")
+    @NotBlank(message = "Email is required")
+    @Size(max = 254, message = "Email too long")
     private String email;
-      @NotBlank(message = "Password is required")
+    @NotBlank(message = "Password is required")
     @Size(min = 6, max = 72, message = "Password must be 6-72 characters")
     private String password;
     private Role role;

@@ -60,6 +60,13 @@ public class UserServiceImpl implements UserService {
         }
 
     }
+    @Override
+public boolean login(String email, String rawPassword) {
+    return userRepository.findByEmail(email)
+            .map(user -> passwordEncoder.matches(rawPassword, user.getPassword()))
+            .orElse(false);
+}
+
 
     @Override
     public Optional<User> findByUsername(String username) {
